@@ -1,0 +1,39 @@
+"Issue Type","Summary","Description","Epic Name","Epic Link"
+"Epic","Repo + Environments","","Repo + Environments",""
+"Story","Create monorepo scaffold (backend + frontend + docker)","AC:\n- backend Django runs locally\n- frontend Vue runs locally and calls /api/health via proxy\n- Postgres runs via docker-compose\n- README includes exact setup steps","","Repo + Environments"
+
+"Epic","Authentication + Users","","Authentication + Users",""
+"Story","Implement custom user model (email login)","AC:\n- user can register and login\n- Django admin works\n- tests cover user creation and auth basics","","Authentication + Users"
+
+"Epic","Tournament + Membership","","Tournament + Membership",""
+"Story","Create Tournament model and membership model","AC:\n- tournament has status, visibility, public_slug, timezone, nomination_limit\n- membership role host or participant\n- creator automatically becomes host member","","Tournament + Membership"
+"Story","Tournament permissions (membership gated access)","AC:\n- non-public endpoints require active membership\n- host-only endpoints enforced","","Tournament + Membership"
+
+"Epic","Email Invites","","Email Invites",""
+"Story","Invite participant by email (token link)","AC:\n- host can invite email\n- invite stored with token_hash and expiry\n- email sending stubbed for MVP","","Email Invites"
+"Story","Accept invite flow (pre-login link)","AC:\n- invite link works before login\n- user prompted to login or register\n- invite cannot be reused\n- invite expires","","Email Invites"
+
+"Epic","Nominations + Moderation","","Nominations + Moderation",""
+"Story","Participant submits nomination","AC:\n- participant can submit nominations up to tournament limit\n- participant can submit fewer than limit\n- nomination status visible to user","","Nominations + Moderation"
+"Story","Host moderation queue approve or reject","AC:\n- host can approve or reject nominations\n- approved nominations create Entrant records\n- all approved entrants are included in tournament","","Nominations + Moderation"
+
+"Epic","Tournament Designer","","Tournament Designer",""
+"Story","Implement Tournament Designer v1 service","AC:\n- input: approved entrants\n- groups sized 4–6 and balanced\n- knockout size K = highest power of 2 <= entrants (min 8)\n- deterministic output","","Tournament Designer"
+"Story","Start tournament action (host)","AC:\n- host can start tournament\n- tournament designer generates groups and matches\n- tournament status moves to group stage","","Tournament Designer"
+
+"Epic","Voting + Match Engine","","Voting + Match Engine",""
+"Story","Vote endpoint one vote per user per match","AC:\n- vote allowed only when match open\n- database constraint prevents double voting\n- vote counts update correctly","","Voting + Match Engine"
+"Story","Match close and finalize job","AC:\n- matches close automatically\n- finalization idempotent\n- standings updated after finalize\n- tie extension rule implemented","","Voting + Match Engine"
+"Story","Host tie break decision endpoint","AC:\n- host can choose winner after tie extension\n- decision recorded via decided_by_host flag","","Voting + Match Engine"
+
+"Epic","Publishing + Host Mode","","Publishing + Host Mode",""
+"Story","Publish match result","AC:\n- only host can publish\n- results hidden until published\n- participants see published results only","","Publishing + Host Mode"
+"Story","Host Mode reveal screen","AC:\n- host can view unpublished results\n- host can publish next result\n- tables and bracket update","","Publishing + Host Mode"
+
+"Epic","Public Results","","Public Results",""
+"Story","Enable public results and generate slug","AC:\n- host can enable public results\n- public slug generated\n- slug unique","","Public Results"
+"Story","Public read only results pages","AC:\n- public can view fixtures and published results\n- public cannot vote or nominate\n- public endpoints expose published data only","","Public Results"
+
+"Epic","Observability + Hardening","","Observability + Hardening",""
+"Story","Audit logging for key actions","AC:\n- log invite created and accepted\n- log nomination approved and rejected\n- log match finalized\n- log match published\n- log host tie-break","","Observability + Hardening"
+"Story","Basic rate limiting and abuse protection","AC:\n- throttle vote endpoint\n- throttle nomination submissions","","Observability + Hardening"
